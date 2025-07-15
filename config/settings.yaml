@@ -1,0 +1,86 @@
+# QuantPak Configuration Settings
+
+# Data Sources
+data_sources:
+  yahoo:
+    enabled: true
+    rate_limit: 2000  # requests per hour
+  alpha_vantage:
+    enabled: false
+    api_key: null
+    rate_limit: 500
+  fred:
+    enabled: false
+    api_key: null
+  quandl:
+    enabled: false
+    api_key: null
+
+# Data Storage
+storage:
+  base_path: "data"
+  cache_enabled: true
+  cache_ttl: 3600  # seconds
+  compression: true
+  formats:
+    default: "hdf5"
+    backup: "csv"
+
+# Backtesting
+backtesting:
+  default_initial_capital: 100000
+  commission:
+    equity: 0.001  # 0.1%
+    forex: 0.00002  # 2 pips
+    futures: 2.0  # $2 per contract
+  slippage:
+    market_impact: 0.0001
+    bid_ask_spread: 0.0002
+
+# Risk Management
+risk:
+  max_position_size: 0.05  # 5% of portfolio
+  max_sector_exposure: 0.25  # 25% per sector
+  stop_loss_default: 0.02  # 2%
+  var_confidence: 0.95
+  stress_test_scenarios:
+    - "2008_crisis"
+    - "covid_2020"
+    - "tech_bubble_2000"
+
+# Portfolio
+portfolio:
+  rebalancing_frequency: "monthly"
+  min_weight: 0.01  # 1%
+  max_weight: 0.10  # 10%
+  transaction_costs: true
+
+# Visualization
+visualization:
+  default_theme: "plotly_white"
+  figure_size: [12, 8]
+  colors:
+    positive: "#2E8B57"
+    negative: "#DC143C" 
+    neutral: "#4169E1"
+
+# Research
+research:
+  notebook_template: "quantpak_template.ipynb"
+  auto_save: true
+  version_control: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/quantpak.log"
+  max_file_size: "10MB"
+  backup_count: 5
+
+# Performance
+performance:
+  parallel_processing: true
+  max_workers: 4
+  memory_limit: "8GB"
+  optimization_level: "standard"
